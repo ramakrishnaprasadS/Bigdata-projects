@@ -1,0 +1,11 @@
+
+
+Hive Project:
+
+Responsibilities:
+    1. Import client data to distributed filesystem of warehouse 
+    2. Implement data analysis with hive queries on internal tables
+    3. Implement partitions and bucketing 
+    4. Implement external tables for results to take into client db
+    5. Export external table to sql or Nosql
+    
