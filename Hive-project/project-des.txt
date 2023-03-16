@@ -8,4 +8,22 @@ Responsibilities:
     3. Implement partitions and bucketing 
     4. Implement external tables for results to take into client db
     5. Export external table to sql or Nosql
+
+
+    
+
+
+hive-sql syntactical differences:
+
+-joins suported in hive:
+    JOIN
+    LEFT OUTER JOIN
+    RIGHT OUTER JOIN
+    FULL OUTER JOIN
+-'using' not supported
+- 'as' not supported in derived table aliasing
+-'timestampdiff' not supported in hive
+
+
+
     
