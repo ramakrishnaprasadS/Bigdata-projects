@@ -1,0 +1,127 @@
+# Query questions
+# 1. Display country wise number of orders
+# 2.Display the number of units sold in each region.
+# 3.Display the 10 most recent sales. 
+# 4.Display the products with atleast 2 occurences of 'a' 
+# 5.Display country in each region with highest units sold. 
+# 6.Display the unit price and unit cost of each item in ascending order. 
+# 7.Display the number of sales yearwise.
+# 8.Display the number of orders for each item. 
+
+
+
+from pyspark import SparkContext 
+
+sc = SparkContext("vm", "")
+
+# 	a) Load sales Dataset and create RDD	
+rdd1=sc.textFile("/user/spark/datasets/sales.csv",2)
+
+
+header =rdd1.first() #extract header
+rdd2 = rdd1.filter(lambda row:row != header) #filtering records without header
+
+rdd3=rdd2.map(lambda x:[x.split(',')[0],x.split(',')[1],x.split(',')[2],x.split(',')[3],x.split(',')[4],x.split(',')[5],x.split(',')[6],x.split(',')[7],int(x.split(',')[8]),float(x.split(',')[9]),float(x.split(',')[10]),float(x.split(',')[11]),float(x.split(',')[12]),float(x.split(',')[13])])
+
+
+# caching the rdd3
+
+rdd3.cache()
+
+# 1. Display country wise number of orders
+
+country_orders=rdd3.map(lambda x:(x[1],x[6])).groupBy(lambda x:x[0]).map(lambda x:(x[0],len(x[1])))
+
+print(country_orders.take(15))
+
+#saving results as text file in hdfs
+
+country_orders.saveAsTextFile('/user/spark/country_orders')
+
+
+# 2.Display the number of units sold in each region
+
+region_units=rdd3.map(lambda x:(x[0],x[8])).reduceByKey(lambda x,y:x+y)
+print(region_units.take(10))
+
+region_units.coalesce(1).saveAsTextFile('/user/spark/region_units')
+
+
+# 3.Display the 10 most recent sales. 
+
+from datetime import datetime
+
+dt3 = rdd3.map(lambda row: (row[:5]+ [datetime.strptime( row[5],'%m/%d/%Y')]+row[6:]))
+dt3.sortBy(lambda row : row[5],ascending=False).map(lambda row : row[:5] + [row[5].strftime('%-m/%-d/%Y')] +row[6:]).take(10)
+
+# 4.Display the products with atleast 2 occurences of 'a'
+
+a_products=rdd3.map(lambda x:x[2]).filter(lambda x:x.count('a')>=2)
+print(a_products.take(5))
+
+a_products.coalesce(1).saveAsTextFile('/user/spark/a_products')
+
+
+#5.Display country in each region with highest units sold. (Using spark)
+country_sales = rdd3.map(lambda row : ((row[0] , row[1]),int(row[8])))
+c_reduced = country_sales.reduceByKey(lambda a,b :a+b)
+print(c_reduced.map(lambda x: (x[0][0],(x[0][1],x[1]))).reduceByKey(lambda a,b : max(a,b ,key=lambda x : x[1])).collect())
+
+
+# 6.Display the unit price and unit cost of each item in ascending order.
+
+item_cost=rdd3.map(lambda x:(x[2],x[9],x[10])).distinct().sortBy(lambda x:x[2])
+print(item_cost.take(20))
+
+item_cost.coalesce(1).saveAsTextFile('/user/spark/item_cost')
+
+# 7.Display the number of sales yearwise.
+
+yearwise_sales=rdd3.map(lambda x:(str(x[5])[:4],x[6])).groupBy(lambda x:x[0]).map(lambda x:(x[0],len(x[1])))
+print(yearwise_sales.take(10))
+
+yearwise_sales.coalesce(1).saveAsTextFile('/user/spark/yearwise_sales')
+
+
+# 8.Display the number of orders for each item.
+
+item_orders=rdd3.map(lambda x:(x[2],x[6])).groupBy(lambda x:x[0]).map(lambda x:(x[0],len(x[1])))
+print(item_orders.take(15))
+
+item_orders.coalesce(1).saveAsTextFile('/user/spark/item_orders')
+
+
+
+-----------------
+country_orders.saveAsTextFile('/user/spark/country_orders')
+region_units.coalesce(1).saveAsTextFile('/user/spark/region_units')
+a_products.coalesce(1).saveAsTextFile('/user/spark/a_products')
+item_cost.coalesce(1).saveAsTextFile('/user/spark/item_cost')
+yearwise_sales.coalesce(1).saveAsTextFile('/user/spark/yearwise_sales')
+item_orders.coalesce(1).saveAsTextFile('/user/spark/item_orders')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

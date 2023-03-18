@@ -1,0 +1,23 @@
+Step by step project Implementation
+
+step1. 
+    we have 2 csv file, 2 json file and 1 spreadsheet in the (Linux System).
+step2. 
+    claims are coming from json files , patient disease,customer details and insuarnce provider are coming form csv files and types of patients are coming from spreadsheet.
+step3.
+     track their policies,health insuarance, insuarance provider, patient id, and their claims, types of disease etc.
+step4. 
+    Clean the data and modify according to the use cases. (Using python)
+step5. 
+    After cleansing the data create data model and store the data in the RDBMS.
+step6. 
+    every tables should have 5,6 columns.
+step7. 
+    After storing the data in the RDBMS perform some more transformation tech and store the result into another tables.
+step8. 
+    Use the sqoop to import the data from RDBMS to hdfs.
+step9. 
+    Use some processing engine hive/spark for analytical queries and show the result in visualized form.
+step10. 
+    For visulization you can use the seaborn/matplotlib libr.
+
