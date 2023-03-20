@@ -21,6 +21,8 @@ rdd1=sc.textFile("/user/spark/datasets/sales.csv",2)
 header =rdd1.first() #extract header
 rdd2 = rdd1.filter(lambda row:row != header) #filtering records without header
 
+
+
 rdd3=rdd2.map(lambda x:[x.split(',')[0],x.split(',')[1],x.split(',')[2],x.split(',')[3],x.split(',')[4],x.split(',')[5],x.split(',')[6],x.split(',')[7],int(x.split(',')[8]),float(x.split(',')[9]),float(x.split(',')[10]),float(x.split(',')[11]),float(x.split(',')[12]),float(x.split(',')[13])])
 
 
@@ -65,7 +67,7 @@ a_products.coalesce(1).saveAsTextFile('/user/spark/a_products')
 #5.Display country in each region with highest units sold. (Using spark)
 country_sales = rdd3.map(lambda row : ((row[0] , row[1]),int(row[8])))
 c_reduced = country_sales.reduceByKey(lambda a,b :a+b)
-print(c_reduced.map(lambda x: (x[0][0],(x[0][1],x[1]))).reduceByKey(lambda a,b : max(a,b ,key=lambda x : x[1])).collect())
+print(c_reduced.map(lambda x: (x[0][0],(x[0][1],x[1]))).reduceByKey(lambda a,b : max(a,b ,key=lambda x : x[1])).take(10))
 
 
 # 6.Display the unit price and unit cost of each item in ascending order.

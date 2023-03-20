@@ -1,0 +1,22 @@
+
+
+PYSPARK PROJECT:
+
+import the data to DBFS using data ingestion tools
+
+implement rdd's with pyspark transformations
+Implement optimizations of rdd's and memeory only process
+Implement rdd for structured data and semistructured
+import the rdd results to hdfs with use of actions
+
+
+
+# Requirement:
+1. Display country wise number of orders
+2.Display the number of units sold in each region.
+3.Display the 10 most recent sales. 
+4.Display the products with atleast 2 occurences of 'a' 
+5.Display country in each region with highest units sold. 
+6.Display the unit price and unit cost of each item in ascending order. 
+7.Display the number of sales yearwise.
+8.Display the number of orders for each item. 

@@ -1,0 +1,46 @@
+SHAR MARKET Case Study:
+There are three conventional approaches for stock price prediction: technical analysis,traditional time 
+series forecasting, and machine learning method. 
+
+Earlier classical regression methods such as linear regression, polynomial regression, etc. were used topredict stock 
+trends. 
+
+Also, traditional statistical models which include exponential
+smoothing, moving average, and ARIMA makes their prediction linearly. Nowadays,Support Vector 
+Machines (Cortes & Vapnik, 1995) (SVM) and Artificial Neural
+Networks (ANN) are widely used for the prediction of stock price movements.
+
+ Every algorithm has its way of learning patterns and then predicting. Artificial Neural Network
+(ANN) is a popular and more recent method which also incorporate technical analysis for making 
+predictions in financial markets. 
+
+ANN includes a set of threshold functions.These functions trained on historical data after connecting each other 
+with adaptive weights and they are used to make future predictions. 
+(Trippi & Turban, 1992;
+Walczak, 2001; Shadbolt & Taylor, 2002) (Kuan & Liu, 1995) investigated the out-of-sample forecasting 
+ability of recurrent and feedforward neural networks based
+on empirical foreign exchange rate data (Kuan & Liu, 1995). In 2017, Mehdi Khasheiand Zahra Haji 
+Rahimi evaluated the performance of series and parallel strategies to
+determine a more accurate one using ARIMA and MLP (Multilayer Perceptron)(Mehdi & Zahra, 2017).
+ This dataset have the coloumn fields 
+MARKET,SERIES,SYMBOL,SECURITY,PREV_CL_PR,OPEN_PRICE,HIGH_PRICE,LOW_PRICE,CLOSE_PRICE,NE
+T_TRDVAL,
+NET_TRDQTY,CORP_IND,TRADES,HI_52_WK,LO_52_WK.we can analyse this dataset according to the 
+prices.
+
+
+
+PROBLEMS :
+1.Query to display the number of series present in the data.
+2.Display the series present in the data.
+3.Find the sumpof all the prices in the each series.
+4.Display security,series with highest net trade value
+5.Display the series whose sum of all prices greater than the net trade value.
+6.Display the series with highest net trade quantity.
+7. Display the highest and lowest open price
+8.Query to display the series which have trades more than 80.
+9.Display the difference between the net trade value net trade quantity for each series.
+
+
+
+
