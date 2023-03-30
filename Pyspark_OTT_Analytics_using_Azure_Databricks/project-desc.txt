@@ -1,0 +1,10 @@
+
+Pyspark OTT Analytics using Azure Databricks
+
+Data Pipeline implementation to preprocess and Analyse OTT datasets that are received on daily basis 
+using Azure Databricks.
+Tools : Azure Databricks,Pyspark,Data Factory ,Azure SQL
+-Preprocessed the OTT raw datasets stored in Blob container by mounting them in Azure Databricks
+-Analysed 10+ usescases on them using Pyspark DataFrames,exported the processed data and analysis results to Azure SQL database.
+-Moved the processed files to another blob conatiner and Scheduled this entire process 
+ in Azure Data Factory Pipeline using Schedule trigger to run once everyday 

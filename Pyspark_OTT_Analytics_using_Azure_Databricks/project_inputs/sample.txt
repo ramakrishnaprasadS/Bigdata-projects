@@ -1,0 +1,2 @@
+CREATE TABLE spark_catalog.default.ott_ 
+(  imdb_id STRING,   title STRING,   plot STRING,   type STRING,   rated STRING,   year STRING,   released_at STRING,   added_at STRING,   runtime STRING,   genre STRING,   director STRING,   writer STRING,   actors STRING,   language STRING,   country STRING,   awards STRING,   metascore STRING,   imdb_rating FLOAT,   imdb_votes INT) USING delta TBLPROPERTIES (   'delta.minReaderVersion' = '1',   'delta.minWriterVersion' = '2') 
