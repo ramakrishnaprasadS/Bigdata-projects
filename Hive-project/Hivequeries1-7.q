@@ -27,7 +27,7 @@ Note: discount field in keep signifies the percentage of discount on the maximum
         ph.pharmacyid,
         keep.medicineid,
         quantity,
-        maxprice,
+        maxprice,4v 
         discount,
         (quantity*maxprice)*(1-0.01*discount) as totalval from pharmacy ph left outer join keep on ph.pharmacyid=keep.pharmacyid join medicine on medicine.medicineid=keep.medicineid)  D
     group by D.pharmacyid
@@ -49,7 +49,8 @@ minimum and average number of medicines prescribed in their prescriptions.
 */
 
     create external table med_prescri(pharmacyid int,avg_of_max_quantity float,avg_of_min_quantity float,avg_of_avg_quantity float)
-    ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n';
 
     insert into table med_prescri
